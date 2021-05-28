@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "995689310119",
+    "firebase_url": "https://phone-auth-test-cd746.firebaseio.com",
+    "project_id": "phone-auth-test-cd746",
+    "storage_bucket": "phone-auth-test-cd746.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995689310119:android:2f0a45d002b3f325207882",
+        "android_client_info": {
+          "package_name": "com.example.anybooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995689310119-lounk4fiuestdjdh1a2f1l1tkmp40irq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy54ZQ7qD-ZQcF63Oyr3QxHjxBA_uO9GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995689310119-lounk4fiuestdjdh1a2f1l1tkmp40irq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
