@@ -1,0 +1,4 @@
+enum ExploreView {
+  Grid,
+  List,
+}

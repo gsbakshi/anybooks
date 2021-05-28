@@ -1,3 +1,4 @@
+import 'package:anybooks/util/enums/explore_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +13,62 @@ class ExploreScreen extends StatefulWidget {
   _ExploreScreenState createState() => _ExploreScreenState();
 }
 
-class _ExploreScreenState extends State<ExploreScreen> {
-  ScrollController _controller = ScrollController();
-  bool _grid = false;
+class _ExploreScreenState extends State<ExploreScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<Offset> _slideAnimationOut;
+  Animation<Offset> _slideAnimationIn;
+
+  ExploreView _view = ExploreView.Grid;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(
+        milliseconds: 1000,
+      ),
+    );
+    _slideAnimationOut = Tween<Offset>(
+      begin: Offset(0, 0),
+      end: Offset(-1.5, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+    _slideAnimationIn = Tween<Offset>(
+      begin: Offset(1.5, 0),
+      end: Offset(0, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  void _changeView() {
+    if (_view == ExploreView.Grid) {
+      setState(() {
+        _view = ExploreView.List;
+      });
+      _controller.forward();
+    } else {
+      setState(() {
+        _view = ExploreView.Grid;
+      });
+      _controller.reverse();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +78,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: GestureDetector(
-            onTap: () {
-              setState(() {
-                _grid = !_grid;
-              });
-            },
+            onTap: _changeView,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -52,18 +102,48 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ),
           ),
         ),
-        _grid
-            ? Container(
-                child: Center(child: Text('a')),
-              )
-            : Expanded(
-                child: ListView.builder(
-                  controller: _controller,
-                  shrinkWrap: true,
-                  itemCount: genres.length,
-                  itemBuilder: (ctx, i) => SectionBuilder(genres[i]['id']),
+        if (_view == ExploreView.Grid)
+          Expanded(
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 1000),
+              curve: Curves.easeIn,
+              child: SlideTransition(
+                position: _slideAnimationIn,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 24,
+                    crossAxisSpacing: 24,
+                    childAspectRatio: 4 / 2,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: 6,
+                  itemBuilder: (ctx, i) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text('a'),
+                  ),
                 ),
               ),
+            ),
+          ),
+
+        // if (_view == ExploreView.List)
+        Expanded(
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 1000),
+            curve: Curves.easeIn,
+            child: SlideTransition(
+              position: _slideAnimationIn,
+              child: ListView.builder(
+                itemCount: genres.length,
+                itemBuilder: (ctx, i) => SectionBuilder(genres[i]['id']),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
