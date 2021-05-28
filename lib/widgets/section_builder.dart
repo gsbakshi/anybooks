@@ -90,7 +90,10 @@ class SectionBuilder extends StatelessWidget {
               title: section['title'],
               tapHandler: () {
                 print(section['title']);
-                Navigator.of(context).pushNamed(SectionListScreen.routeName);
+                Navigator.of(context).pushNamed(
+                  SectionListScreen.routeName,
+                  arguments: section['title'],
+                );
               },
             ),
           ),

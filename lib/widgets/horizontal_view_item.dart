@@ -22,13 +22,16 @@ class _HorizontalViewItemState extends State<HorizontalViewItem> {
           child: GestureDetector(
             onTap: () {
               print(widget.book['title']);
-              Navigator.of(context).pushNamed(BookDetailsScreen.routeName,
-                  arguments: widget.book['id']);
+              Navigator.of(context).pushNamed(
+                BookDetailsScreen.routeName,
+                arguments: widget.book['title'],
+              );
             },
             child: Container(
               margin: const EdgeInsets.only(right: 24),
+              width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.white.withOpacity(0.05),
                 borderRadius: BorderRadius.circular(6),
               ),
               child: ClipRRect(

@@ -15,8 +15,10 @@ class VerticalViewItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           print(book['title']);
-          Navigator.of(context)
-              .pushNamed(BookDetailsScreen.routeName, arguments: book['id']);
+          Navigator.of(context).pushNamed(
+            BookDetailsScreen.routeName,
+            arguments: book['title'],
+          );
         },
         child: Container(
           decoration: BoxDecoration(
@@ -29,7 +31,7 @@ class VerticalViewItem extends StatelessWidget {
               Container(
                 width: query.width * 0.24,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withOpacity(0.05),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: ClipRRect(
