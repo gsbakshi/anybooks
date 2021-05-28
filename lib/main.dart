@@ -14,6 +14,7 @@ import 'pages/settings_screen.dart';
 import 'pages/navigator_screen.dart';
 import 'pages/favourites_screen.dart';
 import 'pages/book_details_screen.dart';
+import 'providers/tab_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ void main() async {
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (ctx) => NavigatorProvider()),
+          ChangeNotifierProvider(create: (ctx) => TabBarProvider()),
           ChangeNotifierProvider(create: (ctx) => BooksProvider()),
         ],
         child: MyApp(),
