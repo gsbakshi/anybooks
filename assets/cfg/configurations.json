@@ -1,4 +1,5 @@
 {
   "base_url": "https://markets.smartersvision.com/",
-  "books_api_base_url": "https://catalog.feedbooks.com"
+  "books_api_base_url": "https://catalog.feedbooks.com",
+  "api": "AIzaSyDy54ZQ7qD-ZQcF63Oyr3QxHjxBA_uO9GM"
 }
