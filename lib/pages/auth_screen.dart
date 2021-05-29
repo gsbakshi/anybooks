@@ -138,6 +138,7 @@ class _AuthCardState extends State<AuthCard>
           _authData['password'],
         );
       }
+      Navigator.of(context).pop();
     } on HttpException catch (error) {
       var errorMessage = 'Authentication failed';
       if (error.toString().contains('EMAIL_EXISTS')) {
