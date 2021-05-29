@@ -1,10 +1,11 @@
-import 'package:anybooks/pages/section_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:global_configuration/global_configuration.dart';
-import 'package:provider/provider.dart';
 
+import 'providers/auth.dart';
+import 'providers/tab_provider.dart';
 import 'providers/books_provider.dart';
 import 'providers/navigator_provider.dart';
 
@@ -13,8 +14,8 @@ import 'pages/explore_screen.dart';
 import 'pages/settings_screen.dart';
 import 'pages/navigator_screen.dart';
 import 'pages/favourites_screen.dart';
+import 'pages/section_list_screen.dart';
 import 'pages/book_details_screen.dart';
-import 'providers/tab_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ void main() async {
           ChangeNotifierProvider(create: (ctx) => NavigatorProvider()),
           ChangeNotifierProvider(create: (ctx) => TabBarProvider()),
           ChangeNotifierProvider(create: (ctx) => BooksProvider()),
+          ChangeNotifierProvider(create: (ctx) => Auth()),
         ],
         child: MyApp(),
       ),

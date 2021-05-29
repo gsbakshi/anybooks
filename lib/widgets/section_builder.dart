@@ -77,7 +77,7 @@ class SectionBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     var query = MediaQuery.of(context).size;
     final section =
-        Provider.of<BooksProvider>(context, listen: false).findById(itemId);
+        Provider.of<BooksProvider>(context, listen: false).findSectionById(itemId);
     return Container(
       width: double.infinity,
       height: height(query.height, section['size']),
